@@ -2,6 +2,7 @@ let posts = [];
 let currentIndex = 0;
 let currentUser = null;
 let annotatorField = null;
+let loadErrorMessage = '';
 
 function getAnnotatorFieldFromEmail(email) {
   if (!email) return 'annotator1';
@@ -41,8 +42,8 @@ function renderPost() {
   const form = document.getElementById('annotation-form');
 
   if (!posts.length) {
-    postLabel.textContent = 'No posts available';
-    postText.textContent = 'No Firestore posts are available yet. Add documents to the posts collection in Firestore.';
+    postLabel.textContent = loadErrorMessage ? 'Unable to load posts' : 'No posts available';
+    postText.textContent = loadErrorMessage || 'No Firestore posts are available yet. Add documents to the posts collection in Firestore.';
     postText.dir = 'ltr';
     form.querySelectorAll('input[name="label"]').forEach((input) => {
       input.checked = false;
@@ -64,8 +65,11 @@ function renderPost() {
 
 async function fetchAllPosts() {
   const db = window.firebaseDb;
+  loadErrorMessage = '';
+
   if (!db) {
     posts = [];
+    loadErrorMessage = 'Firebase Firestore is not available. Check your config.js and Firebase setup.';
     return;
   }
 
@@ -75,7 +79,13 @@ async function fetchAllPosts() {
   } catch (error) {
     console.error('Unable to load posts from Firestore.', error);
     posts = [];
-    document.getElementById('annotation-message').textContent = 'Unable to load posts from Firestore. Check your Firestore rules and collection name.';
+
+    const message = /permission|insufficient|denied/i.test(error.message || '')
+      ? 'Firestore denied the request. Please allow authenticated users to read posts in Firestore Security Rules.'
+      : 'Unable to load posts from Firestore. Check your Firestore rules and collection name.';
+
+    loadErrorMessage = `${message} (${error.message || 'Unknown error'})`;
+    document.getElementById('annotation-message').textContent = loadErrorMessage;
   }
 }
 
