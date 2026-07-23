@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mental Health Annotator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container auth-container">
+      <div class="card">
+        <h1>Mental Health Annotator</h1>
+        <p>Sign in to begin labeling posts and saving annotations.</p>
+
+        <form id="login-form">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="At least 6 characters" />
+
+          <button type="submit" class="btn">Sign In</button>
+        </form>
+
+        <p id="auth-message" class="message"></p>
+        <p class="helper-text">
+          Replace the Firebase values in the configuration file to enable real authentication and storage.
+        </p>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="config.js"></script>
+    <script src="firebase.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

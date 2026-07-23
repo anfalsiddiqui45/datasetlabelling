@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annotation Interface</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="top-bar">
+          <div>
+            <h1>Annotate Posts</h1>
+            <p id="user-info">Loading account...</p>
+          </div>
+          <button id="logout-btn" class="btn secondary">Log Out</button>
+        </div>
+
+        <div class="progress-panel">
+          <div class="progress-label">
+            <span id="progress-text">Loading posts...</span>
+            <span id="progress-count">0/0</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="post-card">
+          <h2 id="post-label">Post</h2>
+          <p id="post-text">Loading content...</p>
+        </div>
+
+        <form id="annotation-form" class="options">
+          <label class="option"><input type="radio" name="label" value="Depression" /> Depression</label>
+          <label class="option"><input type="radio" name="label" value="Anxiety" /> Anxiety</label>
+          <label class="option"><input type="radio" name="label" value="Stress" /> Stress</label>
+          <label class="option"><input type="radio" name="label" value="Normal" /> Normal</label>
+        </form>
+
+        <div class="actions">
+          <button id="prev-btn" class="btn secondary">Previous</button>
+          <button id="save-btn" class="btn">Save Annotation</button>
+          <button id="next-btn" class="btn secondary">Next</button>
+        </div>
+
+        <p id="annotation-message" class="message"></p>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="config.js"></script>
+    <script src="firebase.js"></script>
+    <script src="annotator-firebase.js"></script>
+  </body>
+</html>
