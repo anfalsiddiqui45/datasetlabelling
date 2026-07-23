@@ -1,5 +1,5 @@
 # Sensitive files - NEVER commit
-config.js
+# config.js is now public (Firebase Web API keys are meant to be public)
 serviceAccountKey.json
 
 # Environment & local
