@@ -36,10 +36,19 @@ function setDirectionForText(el, text) {
   el.dir = hasArabic ? 'rtl' : 'ltr';
 }
 
+function clearAnnotationMessage() {
+  const messageBox = document.getElementById('annotation-message');
+  if (messageBox) {
+    messageBox.textContent = '';
+  }
+}
+
 function renderPost() {
   const postLabel = document.getElementById('post-label');
   const postText = document.getElementById('post-text');
   const form = document.getElementById('annotation-form');
+
+  clearAnnotationMessage();
 
   if (!posts.length) {
     postLabel.textContent = loadErrorMessage ? 'Unable to load posts' : 'No posts available';
